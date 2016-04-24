@@ -1,10 +1,6 @@
 var y,x2,time,minutes,hours,input1,input2,input;
 var socket = io.connect();
 
-time=new Date;
-hours = time.getHours();
-minutes = time.getMinutes();
-
 function write(canvas,txt,x,y){
     $(canvas).drawText({
         fillStyle: 'black',
@@ -90,13 +86,6 @@ function informationCanvas(element,valeur) {
     $(element).css('font-weight','bold');
 }
 
-if (hours<10) {
-    hours="0"+hours;
-}
-if (minutes<10) {
-    minutes="0"+minutes;
-}
-
 socket.on('data', function(data) {
     $("#temperatureWell").text('Température extérieur du puit : '+data[0]+" °C");
     $('#humidity').text('Taux d\'humidité : '+data[1]+' %');
@@ -111,7 +100,6 @@ socket.on('data', function(data) {
     });
     informationCanvas('#temperatureWell',data[0]);
 });
-$('#hour').append(hours+"h"+minutes);
 
 $('#sumbit1').click(function () {
     input=[parseInt($('#input0').val()),parseInt($('#input1').val())];
