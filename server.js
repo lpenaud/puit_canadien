@@ -16,11 +16,12 @@ function present(array) {
     var present=[jsonfile.readFileSync(file0).tWell,
         jsonfile.readFileSync(file0).tHumi,
         jsonfile.readFileSync(file0).tVMC];
+        
     if (array==null) {
         return present
     }
     else {
-        return present[array];
+        return present[array]
     }
 }
 
