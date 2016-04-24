@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Puit Canadien</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    
+<body>
+    
+<header>
+    <h1>Puit Canadien</h1>
+</header>
+
+<footer>
+    <!-- Put CC logo -->
+</footer>
+
+<div id="information">
+    <h2>État du puit Canadien</h2>
+    <ul>
+        <li id="humidity">Taux d'humidité : </li>
+        <li id="temperatureWell" class='button'>Température extérieur du puit : </li>
+        <li id="temperatureVMC" class='button'>Température de la VMC : </li>
+        <li id="hour">Il est : </li>
+    </ul>
+</div>
+
+<div id='graph'>
+    <canvas id="thermometer" width="400" height="425"></canvas>
+    <button id='refresh' class='button' type="button"><img src='Images/Refresh-Button2.gif' title="Appuyez ici pour rafraîchir la page" /></button> 
+</div>
+
+<form id='future'>
+    <h2>Vos paramétres</h2>
+    <br>
+    <label>Température du puit : </label>
+    <input type="number" id='input0'/>
+    <br>
+    <label>Température de la VMC : </label>
+    <input type="number" id='input1'/>
+    <br>
+    <input type="button" value="Envoyé" id='sumbit' class='button'/>
+    
+</form>
+
+<script src="Jquery/jquery-1.12.0.min.js"></script>
+<script src="Jquery/jcanvas.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="JS.js"></script>
+    
+</body>
+    
+</html>
+
