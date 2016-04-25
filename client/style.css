@@ -60,15 +60,6 @@ h1 {
         margin-right: -70px;
     }
     
-    #refresh {
-        position: relative;
-        right: 45%;
-    }
-    
-    #refresh img {
-        width: 50px;
-    }
-    
 }
 
 @media screen and (max-width: 1024px) {
@@ -89,14 +80,6 @@ h1 {
     #thermometer {
         margin-left: 10%;
         width: 60%;
-    }
-    
-    #refresh {
-        float: right;
-    }
-    
-    #refresh img {
-        width: 150px;
     }
 }
 
