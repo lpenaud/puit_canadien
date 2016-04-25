@@ -35,13 +35,7 @@ function present(array) {
             console.error("Erreur de l'écriture de : "+file1+' : '+err);
             });
     });
-    
-    socket.on('refresh', function() {
-       console.log('refresh()');
-       present();
-    });
 });
-
 
 app.use(express.static(path.resolve(__dirname, 'client')));
 

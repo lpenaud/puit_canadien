@@ -113,10 +113,3 @@ $('#sumbit1').click(function () {
 });
 
 beginThermometer();
-
-$('#refresh').click(function () {
-    socket.emit('refresh'); 
-    location.reload();
-    $('#thermometer').clearCanvas();
-    beginThermometer();
-});
