@@ -51,7 +51,7 @@ a {
    h2 {
         font-weight: normal;
         font-size: 1,2em;
-        display: inline-block;
+        display: block;
         margin: 10px auto 5px auto;
     }
     
