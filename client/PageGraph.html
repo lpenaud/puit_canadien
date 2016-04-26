@@ -22,7 +22,38 @@
 </div>
 
 
-<canvas width='650' height='710' style='margin-left:200px;'></canvas>
+<canvas width='650' height='705' style='margin-left:200px;'></canvas>
+
+
+<table id='future'>
+    <thead>
+            <tr>
+                <td colspan='2'><h2>Personalisation</h2></td>
+            </tr>
+            <tr>
+                <td>Activé <input type="radio" name="perso" id='custom'/></td>
+                <td>Désactivé <input type="radio" name="perso" id="normal" checked/></td>
+            </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Pas de l'axe x :</td>
+            <td><input type="number" id="stepX"/></td>
+        </tr>
+        <tr>
+            <td>Pas de l'axe y :</td>
+            <td><input type="number" id="stepY"/></td>
+        </tr>
+        <tr>
+            <td>Nombre de l'axe X :</td>
+            <td><input type="number" id="numberX"/></td>
+        </tr>
+        <tr>
+            <td>Nombre de l'axe Y :</td>
+            <td><input type="number" id="numberY"/></td>
+        </tr>
+    </tbody>
+</table>
 
 <script src="Jquery/jquery-1.12.0.min.js"></script>
 <script src="Jquery/jcanvas.min.js"></script>
