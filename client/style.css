@@ -3,9 +3,19 @@ body {
     background-color: #14A544;
 }
 
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 .button:hover
 {
     cursor: pointer;
+    text-decoration: underline;
 }
 
 #refresh {
@@ -28,11 +38,6 @@ h1 {
 
 #temperatureWell {
     font-weight: bold;
-}
-
-a {
-    color: black;
-    text-decoration: none;
 }
 
 @media screen and (min-width: 1024px) {
@@ -63,10 +68,6 @@ a {
     
     #information li {
         margin-right: -70px;
-    }
-    
-    a:hover {
-        text-decoration: underline;
     }
     
 }
