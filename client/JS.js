@@ -5,10 +5,10 @@ function write(canvas,txt,x,y){
     $(canvas).drawText({
         fillStyle: 'black',
         strokeStyle: 'black',
-        strokeWidth: 0,
+        strokeWidth: 0, //Met en gras par defaut
         x: x, y: y,
         fontSize: '1.2em',
-        fontFamily: 'Arial, sans-serif',
+        fontFamily: 'sans-serif,serif',
         text: txt
     });
         x2=230;
@@ -105,7 +105,14 @@ $('#sumbit1').click(function () {
     input=[parseInt($('#input0').val()),parseInt($('#input1').val())];
     if (confirm('Vous confirmez :\n Température du puit : '+input[0]+'\n Température de la VMC : '+input[1])) {
         socket.emit("input",input);
-        alert("Donnée envoyé !");
+        socket.on('confirm', function(confirm) {
+            if (confirm==null) {
+                alert("Données envoyé !"+confirm);
+            }
+            else {
+                alert("Donnée non envoyé à cause d'une erreur ("+confirm+")");
+            }
+        });
     }
     else {
         alert('Donnée non envoyé.');
