@@ -12,8 +12,8 @@ function write(canvas,txt,x,y){
     });
 }
 
-function begin() {
-    var y=10,x=20,xi=0,yi=31;
+function curve(stepX,stepY,numberX,numberY) {
+    var y=10,x=20;
     var originX=20,maxX=640,originY=630,maxY=700,canvas='canvas';
     $(canvas).drawLine({
         strokeStyle: "black",
@@ -31,9 +31,11 @@ function begin() {
            x2:x, y2:originY-10
         });
         x=x+20;
-        xi++;
-        if (xi%5==0){ //Penser peut-être à mettre une échelle donnée par le client ? Ou déjà ajouté des checkbox.
-            write(canvas,xi,x,originY+10);
+        stepX++;
+        if (numberX) {
+            if (stepX%numberX==0){
+            write(canvas,stepX,x,originY+10);
+            }
         }
     }
     while(y<maxY) {
@@ -44,11 +46,13 @@ function begin() {
             x2:originX+10, y2:y
         });
         y=y+20;
-        yi--;
-        if (yi%5==0){
-            write(canvas,yi,originX-10,y);
+        stepY--;
+        if (numberY) {
+            if (stepY%numberY==0){
+                write(canvas,stepY,originX-10,y);
+            }
         }
     }
 }
 
-begin();
+curve(0,31,5,5);
