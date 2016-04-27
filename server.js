@@ -40,7 +40,7 @@ function present(array) {
 
 app.use(express.static(path.resolve(__dirname, 'client')));
 
-server.listen(process.env.PORT, process.env.IP, function () {
+server.listen(process.env.PORT || 80, process.env.IP || '127.0.0.1', function () {
     var addr = server.address();
     console.log("Server listening at", addr.address + ":" + addr.port);
 });
