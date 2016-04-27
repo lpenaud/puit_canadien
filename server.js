@@ -33,7 +33,7 @@ function present(array) {
         var inputF={tWell: input[0],tHumi: present(1), tVMC: input[1]};
         jsonfile.writeFile(file1,inputF, function (err) {
             console.error("Erreur de l'écriture de : "+file1+' : '+err);
-            socket.emit('confirm',err);
+            socket.emit('err',err);
             });
     });
 });
