@@ -26,23 +26,23 @@
 
 
 <table id='future'>
-    <thead>
+    <thead style='display: block;'>
             <tr>
                 <td colspan='2'><h2>Personalisation</h2></td>
             </tr>
             <tr>
-                <td>Activé <input type="radio" name="perso" id='custom'/></td>
+                <td>Activé <input type="radio" name="perso" id='custom' /></td>
                 <td>Désactivé <input type="radio" name="perso" id="normal" checked/></td>
             </tr>
     </thead>
-    <tbody>
+    <tbody style='display: none;'>
         <tr>
-            <td>Pas de l'axe x :</td>
-            <td><input type="number" id="stepX"/></td>
+            <td>Total axe x :</td>
+            <td><input type="number" id="totalX"/></td>
         </tr>
         <tr>
-            <td>Pas de l'axe y :</td>
-            <td><input type="number" id="stepY"/></td>
+            <td>Total axe y :</td>
+            <td><input type="number" id="totalY"/></td>
         </tr>
         <tr>
             <td>Nombre de l'axe X :</td>
@@ -54,7 +54,6 @@
         </tr>
     </tbody>
 </table>
-
 <script src="Jquery/jquery-1.12.0.min.js"></script>
 <script src="Jquery/jcanvas.min.js"></script>
 <script src="JSGraph.js"></script>

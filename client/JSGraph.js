@@ -12,7 +12,7 @@ function write(canvas,txt,x,y){
     });
 }
 
-function curve(stepX,stepY,numberX,numberY) {
+function curve(totalX,totlaY,numberX,numberY) {
     var y=10,x=20;
     var originX=20,maxX=640,originY=630,maxY=700,canvas='canvas';
     $(canvas).drawLine({
@@ -31,10 +31,10 @@ function curve(stepX,stepY,numberX,numberY) {
            x2:x, y2:originY-10
         });
         x=x+20;
-        stepX++;
+        totalX++;
         if (numberX) {
-            if (stepX%numberX==0){
-            write(canvas,stepX,x,originY+10);
+            if (totalX%numberX==0){
+            write(canvas,totalX,x,originY+10);
             }
         }
     }
@@ -46,13 +46,21 @@ function curve(stepX,stepY,numberX,numberY) {
             x2:originX+10, y2:y
         });
         y=y+20;
-        stepY--;
+        totlaY--;
         if (numberY) {
-            if (stepY%numberY==0){
-                write(canvas,stepY,originX-10,y);
+            if (totlaY%numberY==0){
+                write(canvas,totlaY,originX-10,y);
             }
         }
     }
 }
+
+$('#normal').click(function () {
+    $('#future tbody').css('display','none');
+});
+
+$('#custom').click(function() {
+    $('#future tbody').css('display','flex');
+});
 
 curve(0,31,5,5);
