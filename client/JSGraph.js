@@ -1,4 +1,5 @@
-var setNumberX=5, setNumberY=5;
+var setNumberX=5, setNumberY=5,setGridX,setGridY;
+
 function write(canvas,txt,x,y){
     $(canvas).drawText({
         fillStyle: 'black',
@@ -11,8 +12,8 @@ function write(canvas,txt,x,y){
     });
 }
 
-function curve(totalX,totalY,numberX,numberY) {
-    y=10,x=20;
+function curve(totalX,totalY,numberX,numberY,gridX,gridY) {
+    var y=10,x=20;
     var originX=20,maxX=640,originY=630,maxY=700,canvas='canvas';
     $('canvas').clearCanvas();
     $(canvas).drawLine({
@@ -30,6 +31,20 @@ function curve(totalX,totalY,numberX,numberY) {
            x1:x, y1:originY,
            x2:x, y2:originY-10
         });
+        if (gridX && totalX!=0) {
+            $(canvas).drawLine({
+               strokeStyle: 'gray',
+               strokeWidth: 1,
+               x1:x, y1:originY+2,
+               x2:x, y2:maxY
+            });
+            $(canvas).drawLine({
+                strokeStyle: 'gray',
+                strokeWidth: 1,
+                x1:x, y1:originY-10,
+                x2:x, y2:0
+            });
+        }
         x=x+20;
         totalX++;
         if (numberX) {
@@ -45,6 +60,14 @@ function curve(totalX,totalY,numberX,numberY) {
             x1:originX, y1:y,
             x2:originX+10, y2:y
         });
+        if (gridY && totalY!=0) {
+            $(canvas).drawLine({
+               strokeStyle: 'gray',
+               strokeWidth: 1,
+               x1:originX+10, y1:y,
+               x2:maxX, y2:y
+            });
+        }
         y=y+20;
         totalY--;
         if (numberY) {
@@ -71,6 +94,23 @@ $('#custom').click(function() {
     curve(0,31,setNumberX,setNumberY);
 });
 
+function setGrid(checkbox) {
+    var check;
+    if (checkbox.checked) {
+        check=true;
+    }
+    else {
+        check=false;
+    }
+    if (checkbox.id=='gridX') {
+        setGridX=check;
+    }
+    else if (checkbox.id=='gridY') {
+        setGridY=check;
+    }
+    curve(0,31,setNumberX,setNumberY,setGridX,setGridY);
+}
+
 function number(xy) {
     if (xy.id=='numberX') {
         setNumberX = parseInt(xy.value);
@@ -81,7 +121,9 @@ function number(xy) {
     else {
         alert("Erreur !\nDonnées envoyé inconnues");
     }
-    curve(0,31,setNumberX,setNumberY);
+    curve(0,31,setNumberX,setNumberY,setGridX,setGridY);
 }
 
 curve(0,31,setNumberX,setNumberY);
+$('#numberX').val('5');
+$('#numberY').val('5');
