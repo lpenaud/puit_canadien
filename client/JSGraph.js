@@ -1,5 +1,4 @@
-
-
+var setNumberX=5, setNumberY=5;
 function write(canvas,txt,x,y){
     $(canvas).drawText({
         fillStyle: 'black',
@@ -12,9 +11,10 @@ function write(canvas,txt,x,y){
     });
 }
 
-function curve(totalX,totlaY,numberX,numberY) {
-    var y=10,x=20;
+function curve(totalX,totalY,numberX,numberY) {
+    y=10,x=20;
     var originX=20,maxX=640,originY=630,maxY=700,canvas='canvas';
+    $('canvas').clearCanvas();
     $(canvas).drawLine({
         strokeStyle: "black",
         strokeWidth: 4,
@@ -46,10 +46,10 @@ function curve(totalX,totlaY,numberX,numberY) {
             x2:originX+10, y2:y
         });
         y=y+20;
-        totlaY--;
+        totalY--;
         if (numberY) {
-            if (totlaY%numberY==0){
-                write(canvas,totlaY,originX-10,y);
+            if (totalY%numberY==0){
+                write(canvas,totalY,originX-10,y);
             }
         }
     }
@@ -57,10 +57,31 @@ function curve(totalX,totlaY,numberX,numberY) {
 
 $('#normal').click(function () {
     $('#future tbody').css('display','none');
+    curve(0,31,5,5);
 });
 
 $('#custom').click(function() {
     $('#future tbody').css('display','flex');
+    if ($('#numberX').val()) {
+        setNumberX=$('#numberX').val();
+    }
+    else if ($('#numberY').val()) {
+        setNumberY=$('#numberY').val();
+    }
+    curve(0,31,setNumberX,setNumberY);
 });
 
-curve(0,31,5,5);
+function number(xy) {
+    if (xy.id=='numberX') {
+        setNumberX = parseInt(xy.value);
+    }
+    else if (xy.id=='numberY') {
+        setNumberY = parseInt(xy.value);
+    }
+    else {
+        alert("Erreur !\nDonnées envoyé inconnues");
+    }
+    curve(0,31,setNumberX,setNumberY);
+}
+
+curve(0,31,setNumberX,setNumberY);

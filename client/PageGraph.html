@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    
 <header>
     <h1>Puit Canadien</h1>
 </header>
@@ -21,12 +20,10 @@
     </ul>
 </div>
 
-
-<canvas width='650' height='705' style='margin-left:200px;'></canvas>
-
+<canvas width='630' height='705'></canvas>
 
 <table id='future'>
-    <thead style='display: block;'>
+    <thead>
             <tr>
                 <td colspan='2'><h2>Personalisation</h2></td>
             </tr>
@@ -36,24 +33,16 @@
             </tr>
     </thead>
     <tbody style='display: none;'>
-        <tr>
-            <td>Total axe x :</td>
-            <td><input type="number" id="totalX"/></td>
-        </tr>
-        <tr>
-            <td>Total axe y :</td>
-            <td><input type="number" id="totalY"/></td>
-        </tr>
-        <tr>
             <td>Nombre de l'axe X :</td>
-            <td><input type="number" id="numberX"/></td>
+            <td><input type="number" id="numberX" min='0' max='10' oninput='number(this);'/></td>
         </tr>
         <tr>
             <td>Nombre de l'axe Y :</td>
-            <td><input type="number" id="numberY"/></td>
+            <td><input type="number" id="numberY" min='0' max='15' oninput='number(this);'/></td>
         </tr>
     </tbody>
 </table>
+
 <script src="Jquery/jquery-1.12.0.min.js"></script>
 <script src="Jquery/jcanvas.min.js"></script>
 <script src="JSGraph.js"></script>
