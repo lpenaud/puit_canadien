@@ -105,12 +105,12 @@ $('#sumbit1').click(function () {
     input=[parseInt($('#input0').val()),parseInt($('#input1').val())];
     if (confirm('Vous confirmez :\n Température du puit : '+input[0]+'\n Température de la VMC : '+input[1])) {
         socket.emit("input",input);
-        socket.on('confirm', function(confirm) {
-            if (confirm==null) {
-                alert("Données envoyé !"+confirm);
+        socket.on('err', function(err) {
+            if (err==null) {
+                alert("Données envoyé !");
             }
             else {
-                alert("Donnée non envoyé à cause d'une erreur ("+confirm+")");
+                alert("Donnée non envoyé à cause d'une erreur ("+err+")");
             }
         });
     }
@@ -120,3 +120,4 @@ $('#sumbit1').click(function () {
 });
 
 beginThermometer();
+alert("Température affiché actuellement est : Température extérieur du puit");
