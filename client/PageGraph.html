@@ -20,13 +20,12 @@
     </ul>
 </div>
 
-<canvas width='630' height='705'></canvas>
+<canvas width='630' height='705' id='curve'></canvas>
 
-<table id='future'>
+<div id='future'>
+<h2>Personalisation</h2>
+<table>
     <thead>
-            <tr>
-                <td colspan='2'><h2>Personalisation</h2></td>
-            </tr>
             <tr>
                 <td>Activé <input type="radio" name="perso" id='custom' /></td>
                 <td>Désactivé <input type="radio" name="perso" id="normal" checked/></td>
@@ -48,7 +47,17 @@
             <td>Y<input type="checkbox" id='gridY' onclick='setGrid(this);'/></td>
         </tr>
     </tbody>
+    <tfoot>
+        <tr>
+            <td rowspan='2'><label for='font'>Police :</label></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="+" name='font'/></td>
+            <td><input type="button" value="-" name='font'/></td>
+        </tr>
+    </tfoot>
 </table>
+</div>
 
 <script src="Jquery/jquery-1.12.0.min.js"></script>
 <script src="Jquery/jcanvas.min.js"></script>

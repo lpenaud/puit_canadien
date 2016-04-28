@@ -26,9 +26,7 @@ a:hover {
 h1 {
     text-align: center;
     margin-bottom: 50px;
-    border-bottom: 4px;
-    border-bottom-color: rgba(255,255,255,.8);
-    border-bottom-style: dashed;
+    border-bottom: 4px dashed rgba(255,255,255,.8);
     padding: 0px 5px 25px 5px;
     font-size: 2.5em;
     position: relative;
@@ -40,13 +38,17 @@ h1 {
     font-weight: bold;
 }
 
-@media screen and (min-width: 1024px) {
+#sumbit1 {
+        width: 20%;
+    }
+
+@media screen and (min-width: 1024px) { /* Pour les PCs */
     #information,#future {
          float: left;
          border-width: 5px; 
          border-style: solid;
          border-radius: 15px;
-         left: 2%;
+         margin-left: 2%;
          position: absolute;
          width: 25%;
          padding-left: 2%;
@@ -76,7 +78,7 @@ h1 {
     
     #future {
         clear: both;
-        top: 35%;
+        margin-top: 11%;
         border-color: blue;
     }
     
@@ -85,12 +87,32 @@ h1 {
     }
     
     canvas {
-        margin-left: 40%;
+        float: right;
+    }
+    
+    #curve {
+        margin-right: 20%;
+    }
+    
+    #thermometer {
+        margin-right: 40%;
     }
     
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1000px) { /* Pour les mobiles */
+    h1 {
+        font-size: 4em;
+        border-bottom-width: 12px;
+    }
+    
+    h2 {
+        font-size: 2.5em;
+        border-bottom: solid 6px crimson;
+        color: maroon;
+        text-indent:3%;
+    }
+    
     #information {
         margin: 5% 0 5% 0;
     }
@@ -109,7 +131,38 @@ h1 {
         margin-left: 10%;
         width: 60%;
     }
+    
+    #future {
+        width: 100%;
+        display: block;
+    }
+    
+    #future label,input {
+        display: flex;
+        font-size: 2em;
+    }
+    
+    #sumbit1 {
+        height: 80px;
+    }
+    
+    #future thead,tbody {
+        display: none;
+    }
+    
+    #future input[type='button'] {
+        display: block;
+        font-size: 2.5em;
+        font-weight: bold;
+        width: 100px;
+        height: 100px;
+        margin-right: 40%;
+    }
+    
+    #future label[for='font'] {
+        font-size: 2.5em;
+        margin-right: 20%;
+    }
 }
-
 
 

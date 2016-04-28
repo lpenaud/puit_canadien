@@ -1,18 +1,18 @@
-var setNumberX=5, setNumberY=5,setGridX,setGridY;
+var setNumberX=5, setNumberY=5,setGridX,setGridY,setFont;
 
-function write(canvas,txt,x,y){
+function write(canvas,txt,x,y,font){
     $(canvas).drawText({
         fillStyle: 'black',
         strokeStyle: 'black',
         strokeWidth: 0, //Met en gras par defaut
         x: x, y: y,
-        fontSize: '0.7em',
+        fontSize: font+'em',
         fontFamily: 'sans-serif,serif',
         text: txt
     });
 }
 
-function curve(totalX,totalY,numberX,numberY,gridX,gridY) {
+function curve(totalX,totalY,numberX,numberY,gridX,gridY,font) {
     var y=10,x=20;
     var originX=20,maxX=640,originY=630,maxY=700,canvas='canvas';
     $('canvas').clearCanvas();
@@ -49,7 +49,7 @@ function curve(totalX,totalY,numberX,numberY,gridX,gridY) {
         totalX++;
         if (numberX) {
             if (totalX%numberX==0){
-            write(canvas,totalX,x,originY+10);
+            write(canvas,totalX,x,originY+10,font);
             }
         }
     }
@@ -72,7 +72,7 @@ function curve(totalX,totalY,numberX,numberY,gridX,gridY) {
         totalY--;
         if (numberY) {
             if (totalY%numberY==0){
-                write(canvas,totalY,originX-10,y);
+                write(canvas,totalY,originX-10,y,font);
             }
         }
     }
@@ -124,6 +124,6 @@ function number(xy) {
     curve(0,31,setNumberX,setNumberY,setGridX,setGridY);
 }
 
-curve(0,31,setNumberX,setNumberY);
+curve(0,31,setNumberX,setNumberY,false,false,'0.7');
 $('#numberX').val('5');
 $('#numberY').val('5');
