@@ -82,6 +82,10 @@ h1 {
         border-color: blue;
     }
     
+    #future input[type='radio'],input[type='checkbox'],input[type='button']:hover {
+        cursor: pointer;
+    }
+    
     #future thead td {
         display: inline-block;
     }
