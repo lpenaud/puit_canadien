@@ -1,4 +1,4 @@
-var setNumberX=5, setNumberY=5,setGridX,setGridY,setFont;
+var setNumberX=5, setNumberY=5,setGridX,setGridY,setFont=0.7;
 
 function write(canvas,txt,x,y,font){
     $(canvas).drawText({
@@ -79,19 +79,14 @@ function curve(totalX,totalY,numberX,numberY,gridX,gridY,font) {
 }
 
 $('#normal').click(function () {
-    $('#future tbody').css('display','none');
-    curve(0,31,5,5);
+    $('#future tbody,tfoot').css('display','none');
+    curve(0,31,5,5,false,false,'0.7');
 });
 
 $('#custom').click(function() {
-    $('#future tbody').css('display','flex');
-    if ($('#numberX').val()) {
-        setNumberX=$('#numberX').val();
-    }
-    else if ($('#numberY').val()) {
-        setNumberY=$('#numberY').val();
-    }
-    curve(0,31,setNumberX,setNumberY);
+    $('#future tbody,tfoot').css('display','inline-block');
+    $('#custom radio').prop('checked',true);
+    curve(0,31,setNumberX,setNumberY,setGridX,setGridY,setFont);
 });
 
 function setGrid(checkbox) {
@@ -108,7 +103,7 @@ function setGrid(checkbox) {
     else if (checkbox.id=='gridY') {
         setGridY=check;
     }
-    curve(0,31,setNumberX,setNumberY,setGridX,setGridY);
+    curve(0,31,setNumberX,setNumberY,setGridX,setGridY,setFont);
 }
 
 function number(xy) {
@@ -121,9 +116,18 @@ function number(xy) {
     else {
         alert("Erreur !\nDonnées envoyé inconnues");
     }
-    curve(0,31,setNumberX,setNumberY,setGridX,setGridY);
+    curve(0,31,setNumberX,setNumberY,setGridX,setGridY,setFont);
 }
+$("input[name='font']").click(function() {
+   if ($(this).val()=='+') {
+       setFont=setFont+0.1;
+   }
+   else if (this.value=='-') {
+       setFont=setFont-0.1;
+   }
+   curve(0,31,setNumberX,setNumberY,false,false,setFont);
+});
 
-curve(0,31,setNumberX,setNumberY,false,false,'0.7');
+curve(0,31,setNumberX,setNumberY,false,false,setFont);
 $('#numberX').val('5');
 $('#numberY').val('5');

@@ -27,11 +27,12 @@
 <table>
     <thead>
             <tr>
-                <td>Activé <input type="radio" name="perso" id='custom' /></td>
-                <td>Désactivé <input type="radio" name="perso" id="normal" checked/></td>
+                <td><label for="perso">Activé</label><input type="radio" name="perso" id='custom'/></td>
+                <td><label for="perso">Désactivé</label><input type="radio" name="perso" checked='true' id="normal"/></td>
             </tr>
     </thead>
     <tbody style='display: none;'>
+        <tr>
             <td>Nombre de l'axe X :</td>
             <td><input type="number" id="numberX" min='0' max='10' oninput='number(this);'/></td>
         </tr>

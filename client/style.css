@@ -82,8 +82,12 @@ h1 {
         border-color: blue;
     }
     
-    thead td {
+    #future thead td {
         display: inline-block;
+    }
+    
+    #future tfoot {
+        display: none
     }
     
     canvas {
@@ -92,6 +96,10 @@ h1 {
     
     #curve {
         margin-right: 20%;
+    }
+    
+    #curve:hover {
+        cursor: crosshair;
     }
     
     #thermometer {
