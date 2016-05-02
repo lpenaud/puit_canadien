@@ -154,8 +154,8 @@ h1 {
         font-size: 2em;
     }
     
-    #sumbit1 {
-        height: 80px;
+    #future #sumbit1 {
+        width: 20%;
     }
     
     #future thead,tbody {
