@@ -13,9 +13,6 @@
 <div id="information">
     <h2>Graphiques</h2>
     <ul>
-        <li class='button'>Premier graphique</li>
-        <li class='button'>Second graphique</li>
-        <li class='button'>Troisième graphique</li>
         <li class='button'><a href='/'>Voir le thermomètre</a></li>
     </ul>
 </div>
@@ -31,7 +28,7 @@
                 <td><label for="perso">Désactivé</label><input type="radio" name="perso" checked='true' id="normal"/></td>
             </tr>
     </thead>
-    <tbody style='display: none;'>
+    <tbody>
         <tr>
             <td>Nombre de l'axe X :</td>
             <td><input type="number" id="numberX" min='0' max='10' oninput='number(this);'/></td>
@@ -42,18 +39,18 @@
         </tr>
         <tr>
             <td rowspan='2'>Axes :</td>
-            <td>X<input type="checkbox" id='gridX' onclick='setGrid(this);'/></td>
+            <td>X<input type="checkbox" id='gridX' onclick='setGrid(this);' checked='false'/></td>
         </tr>
         <tr>
-            <td>Y<input type="checkbox" id='gridY' onclick='setGrid(this);'/></td>
+            <td>Y<input type="checkbox" id='gridY' onclick='setGrid(this);' checked='false'/></td>
         </tr>
     </tbody>
     <tfoot>
         <tr>
             <td rowspan='2'><label for='font'>Police :</label></td>
+            <td><input type="button" value="+" name='font'/></td>
         </tr>
         <tr>
-            <td><input type="button" value="+" name='font'/></td>
             <td><input type="button" value="-" name='font'/></td>
         </tr>
     </tfoot>

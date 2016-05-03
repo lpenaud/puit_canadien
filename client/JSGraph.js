@@ -84,8 +84,7 @@ $('#normal').click(function () {
 });
 
 $('#custom').click(function() {
-    $('#future tbody,tfoot').css('display','inline-block');
-    $('#custom radio').prop('checked',true);
+    $('#future tbody,tfoot').css('display','flex');
     curve(0,31,setNumberX,setNumberY,setGridX,setGridY,setFont);
 });
 
@@ -125,7 +124,7 @@ $("input[name='font']").click(function() {
    else if (this.value=='-') {
        setFont=setFont-0.1;
    }
-   curve(0,31,setNumberX,setNumberY,false,false,setFont);
+   curve(0,31,setNumberX,setNumberY,setGridX,setGridY,setFont);
 });
 
 curve(0,31,setNumberX,setNumberY,false,false,setFont);

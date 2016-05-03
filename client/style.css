@@ -90,7 +90,7 @@ h1 {
         display: inline-block;
     }
     
-    #future tfoot {
+    #future tfoot,tbody {
         display: none
     }
     
@@ -100,10 +100,6 @@ h1 {
     
     #curve {
         margin-right: 20%;
-    }
-    
-    #curve:hover {
-        cursor: crosshair;
     }
     
     #thermometer {
