@@ -1,4 +1,5 @@
-var setNumberX=5, setNumberY=5,setGridX,setGridY,setFont=0.7;
+var setNumberX=5, setNumberY=5,setGridX,setGridY,setFont=0.7,setPoint;
+var socket = io.connect(),time=new Date;
 
 function write(canvas,txt,x,y,font){
     $(canvas).drawText({
@@ -12,7 +13,16 @@ function write(canvas,txt,x,y,font){
     });
 }
 
-function curve(totalX,totalY,numberX,numberY,gridX,gridY,font) {
+function point(canvas,x,y) {
+    y=630-y*20;
+    $(canvas).drawEllipse({
+        fillStyle: '#c33',
+        x: x*20+20, y:y,
+        width: 10, height: 10,
+    });
+}
+
+function curve(totalX,totalY,numberX,numberY,gridX,gridY,font){ 
     var y=10,x=20;
     var originX=20,maxX=640,originY=630,maxY=700,canvas='canvas';
     $('canvas').clearCanvas();
@@ -76,6 +86,7 @@ function curve(totalX,totalY,numberX,numberY,gridX,gridY,font) {
             }
         }
     }
+    point('canvas',10,30);
 }
 
 $('#normal').click(function () {
@@ -127,6 +138,11 @@ $("input[name='font']").click(function() {
    curve(0,31,setNumberX,setNumberY,setGridX,setGridY,setFont);
 });
 
-curve(0,31,setNumberX,setNumberY,false,false,setFont);
+socket.emit('time',{"date":time.getDate(),"mouth":time.getMonth(),"year":time.getFullYear()});
+socket.on('dataCurve',function (dataCurve) {
+   
+});
+
+curve(0,31,setNumberX,setNumberY,true,true,setFont);
 $('#numberX').val('5');
 $('#numberY').val('5');
