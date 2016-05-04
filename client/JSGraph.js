@@ -1,7 +1,7 @@
-var setNumberX=5, setNumberY=5,setGridX,setGridY,setFont=0.7,setPoint;
+var setNumberX=5, setNumberY=5,setGridX,setGridY,setFont=0.7,setPoint=0;
 var socket = io.connect(),time=new Date;
 
-function write(canvas,txt,x,y,font){
+function write(canvas,txt,x,y,font,layer,name,group){
     $(canvas).drawText({
         fillStyle: 'black',
         strokeStyle: 'black',
@@ -9,16 +9,21 @@ function write(canvas,txt,x,y,font){
         x: x, y: y,
         fontSize: font+'em',
         fontFamily: 'sans-serif,serif',
-        text: txt
+        text: txt,
+        layer:layer,
+        name:name,
+        group:group
     });
 }
 
 function point(canvas,x,y) {
-    y=630-y*20;
     $(canvas).drawEllipse({
         fillStyle: '#c33',
-        x: x*20+20, y:y,
+        x:x*20+20, y:630-y*20,
         width: 10, height: 10,
+        layer:true,
+        name:'point'+setPoint,
+        groups:'points'
     });
 }
 
@@ -33,33 +38,42 @@ function curve(totalX,totalY,numberX,numberY,gridX,gridY,font){
         x2:originX, y2:maxY,
         x3:originX, y3:originY,
         x4:maxX, y4:originY,
+        layer:true,
+        name:'lines'
     });
     while(x<maxX) {
         $(canvas).drawLine({
            strokeStyle: 'black',
            strokeWidth: 3,
            x1:x, y1:originY,
-           x2:x, y2:originY-10
+           x2:x, y2:originY-10,
+           layer:true,
+           name:'linesX'+totalX,
+           groups:'linesX'
         });
-        if (gridX && totalX!=0) {
-            $(canvas).drawLine({
+        x=x+20;
+        totalX++;
+        $(canvas).drawLine({
                strokeStyle: 'gray',
                strokeWidth: 1,
                x1:x, y1:originY+2,
-               x2:x, y2:maxY
+               x2:x, y2:maxY,
+               layer:true,
+               name:'gridXN'+totalX,
+               groups:'gridX'
             });
-            $(canvas).drawLine({
+        $(canvas).drawLine({
                 strokeStyle: 'gray',
                 strokeWidth: 1,
                 x1:x, y1:originY-10,
-                x2:x, y2:0
+                x2:x, y2:0,
+                layer:true,
+                name:'gridXP'+totalX,
+                groups:'gridX'
             });
-        }
-        x=x+20;
-        totalX++;
         if (numberX) {
             if (totalX%numberX==0){
-            write(canvas,totalX,x,originY+10,font);
+            write(canvas,totalX,x,originY+10,font,true,'writeX'+totalX,'writeX');
             }
         }
     }
@@ -68,21 +82,27 @@ function curve(totalX,totalY,numberX,numberY,gridX,gridY,font){
             strokeStyle: 'black',
             strokeWidth: 3,
             x1:originX, y1:y,
-            x2:originX+10, y2:y
+            x2:originX+10, y2:y,
+            layer:true,
+            name:'lineY'+totalY,
+            group:'linesY'
         });
         if (gridY && totalY!=0) {
             $(canvas).drawLine({
                strokeStyle: 'gray',
                strokeWidth: 1,
                x1:originX+10, y1:y,
-               x2:maxX, y2:y
+               x2:maxX, y2:y,
+               layer:true,
+               name:'gridY'+totalY,
+               group:'gridY'
             });
         }
         y=y+20;
         totalY--;
         if (numberY) {
             if (totalY%numberY==0){
-                write(canvas,totalY,originX-10,y,font);
+                write(canvas,totalY,originX-10,y,font,true,'writeY'+totalY,'writeY');
             }
         }
     }
