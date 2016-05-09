@@ -1,5 +1,6 @@
-var setNumberX=5, setNumberY=5,setGridX,setGridY,setFont=0.7,setPoint=0;
+var setNumberX=5, setNumberY=5,setGridX,setGridY,setFont=0.7,setPoint=0,dataCurveClient;
 var socket = io.connect(),time=new Date;
+var timeJSON = {"date":time.getDate(),"mouth":time.getMonth(),"year":time.getFullYear()};
 
 function write(canvas,txt,x,y,font,layer,name,group){
     $(canvas).drawText({
@@ -25,9 +26,10 @@ function point(canvas,x,y) {
         name:'point'+setPoint,
         groups:'points'
     });
+    setPoint++;
 }
 
-function curve(totalX,totalY,numberX,numberY,gridX,gridY,font){ 
+function curve(totalX,totalY,numberX,numberY,gridX,gridY,font,points){ 
     var y=10,x=20;
     var originX=20,maxX=640,originY=630,maxY=700,canvas='canvas';
     $('canvas').clearCanvas();
@@ -53,6 +55,7 @@ function curve(totalX,totalY,numberX,numberY,gridX,gridY,font){
         });
         x=x+20;
         totalX++;
+        if (gridX) {
         $(canvas).drawLine({
                strokeStyle: 'gray',
                strokeWidth: 1,
@@ -71,6 +74,7 @@ function curve(totalX,totalY,numberX,numberY,gridX,gridY,font){
                 name:'gridXP'+totalX,
                 groups:'gridX'
             });
+        }
         if (numberX) {
             if (totalX%numberX==0){
             write(canvas,totalX,x,originY+10,font,true,'writeX'+totalX,'writeX');
@@ -106,17 +110,20 @@ function curve(totalX,totalY,numberX,numberY,gridX,gridY,font){
             }
         }
     }
-    point('canvas',10,30);
+    for(var i=points.length-1;i>-1;i--) {
+        //alert('('+points[i].tWell+';'+points[i].hours+')');
+        point('canvas',points[i].hours,points[i].tWell);
+    }
 }
 
 $('#normal').click(function () {
     $('#future tbody,tfoot').css('display','none');
-    curve(0,31,5,5,false,false,'0.7');
+    curve(0,31,5,5,false,false,'0.7',dataCurveClient);
 });
 
 $('#custom').click(function() {
     $('#future tbody,tfoot').css('display','flex');
-    curve(0,31,setNumberX,setNumberY,setGridX,setGridY,setFont);
+    curve(0,31,setNumberX,setNumberY,setGridX,setGridY,setFont,dataCurveClient);
 });
 
 function setGrid(checkbox) {
@@ -133,7 +140,7 @@ function setGrid(checkbox) {
     else if (checkbox.id=='gridY') {
         setGridY=check;
     }
-    curve(0,31,setNumberX,setNumberY,setGridX,setGridY,setFont);
+    curve(0,31,setNumberX,setNumberY,setGridX,setGridY,setFont,dataCurveClient);
 }
 
 function number(xy) {
@@ -146,8 +153,9 @@ function number(xy) {
     else {
         alert("Erreur !\nDonnées envoyé inconnues");
     }
-    curve(0,31,setNumberX,setNumberY,setGridX,setGridY,setFont);
+    curve(0,31,setNumberX,setNumberY,setGridX,setGridY,setFont,dataCurveClient);
 }
+
 $("input[name='font']").click(function() {
    if ($(this).val()=='+') {
        setFont=setFont+0.1;
@@ -155,14 +163,83 @@ $("input[name='font']").click(function() {
    else if (this.value=='-') {
        setFont=setFont-0.1;
    }
-   curve(0,31,setNumberX,setNumberY,setGridX,setGridY,setFont);
+   curve(0,31,setNumberX,setNumberY,setGridX,setGridY,setFont,dataCurveClient);
 });
 
-socket.emit('time',{"date":time.getDate(),"mouth":time.getMonth(),"year":time.getFullYear()});
+socket.emit('time',timeJSON);
 socket.on('dataCurve',function (dataCurve) {
-   
+    var day,mouth;
+    dataCurveClient=dataCurve;
+    switch (dataCurve[0].day) {
+        case 0: 
+            day='Dimanche';
+            break;
+        case 1:
+            day='Lundi';
+            break;
+        case 2:
+            day='Mardi';
+            break;
+        case 3:
+            day='Mercredi';
+            break;
+        case 4:
+            day='Jeudi';
+            break;
+        case 5:
+            day='Vendredi';
+            break;
+        case 6:
+            day='Samedi';
+            break;
+    }
+    switch (dataCurve[0].mouth) {
+        case 0:
+            mouth='janvier';
+            break;
+        case 1:
+            mouth='février';
+            break;
+        case 2:
+            mouth='mars';
+            break;
+        case 3:
+            mouth='avril';
+            break;
+        case 4:
+            mouth='mai';
+            break;
+        case 5:
+            mouth='juin';
+            break;
+        case 6:
+            mouth='juillet';
+            break;
+        case 7:
+            mouth='août';
+            break;
+        case 8:
+            mouth='septembre';
+            break;
+        case 9:
+            mouth='octobre';
+            break;
+        case 10:
+            mouth='novembre';
+            break;
+        case 11:
+            mouth='décembre';
+            break;
+    }
+    $('#choiceDate h2').text(day+' '+dataCurve[0].date+' '+mouth+' '+dataCurve[0].year);
+    curve(0,31,setNumberX,setNumberY,true,true,setFont,dataCurve);
 });
 
-curve(0,31,setNumberX,setNumberY,true,true,setFont);
+/*$('#choiceDate input[name="date"]').click(function () {
+   if (this.value=='Date Suivante') {
+       socket.emit('nextDate',{"day":dataCurveClient[0].date})
+   }
+});*/
+
 $('#numberX').val('5');
 $('#numberY').val('5');
