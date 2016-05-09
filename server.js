@@ -58,7 +58,7 @@ function dataCurve(time) {
 
 app.use(express.static(path.resolve(__dirname, 'client')));
 
-server.listen(process.env.PORT || 80, process.env.IP || '127.0.0.1', function () {
+server.listen(process.env.PORT || 3000, process.env.IP || '0.0.0.0', function () {
     var addr = server.address();
     console.log("Server listening at", addr.address + ":" + addr.port);
 });
