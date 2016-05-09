@@ -112,7 +112,7 @@ function curve(totalX,totalY,numberX,numberY,gridX,gridY,font,points){
     }
     for(var i=points.length-1;i>-1;i--) {
         //alert('('+points[i].tWell+';'+points[i].hours+')');
-        point('canvas',points[i].hours,points[i].tWell);
+    point('canvas',points[i].hours,points[i].tWell);
     }
 }
 
@@ -232,7 +232,7 @@ socket.on('dataCurve',function (dataCurve) {
             break;
     }
     $('#choiceDate h2').text(day+' '+dataCurve[0].date+' '+mouth+' '+dataCurve[0].year);
-    curve(0,31,setNumberX,setNumberY,true,true,setFont,dataCurve);
+    curve(0,31,setNumberX,setNumberY,false,false,setFont,dataCurve);
 });
 
 /*$('#choiceDate input[name="date"]').click(function () {
