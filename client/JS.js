@@ -102,8 +102,8 @@ socket.on('data', function(data) {
 });
 
 $('#sumbit1').click(function () {
-	if ($.isNumeric($('input[type="number"]').val())) {
-		alert("Vous n'avez pas rentré un nombre dans un des champs");
+	if (!$.isNumeric($('#input0').val()) || !$.isNumeric($('#input1').val())) {
+		alert("Vous n'avez pas rentré un nombre dans uns des champs");
     }
 	else {
 		input=[parseInt($('#input0').val()),parseInt($('#input1').val())];
@@ -122,7 +122,7 @@ $('#sumbit1').click(function () {
         alert('Donnée non envoyé.');
 	}
 	}
-}
+});
 
 beginThermometer();
 alert("Température affiché actuellement est : Température extérieur du puit");
