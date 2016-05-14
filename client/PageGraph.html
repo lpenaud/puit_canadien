@@ -13,26 +13,23 @@
 <div id="information">
     <h2>Graphiques</h2>
     <ul>
-        <li class='button'>Premier graphique</li>
-        <li class='button'>Second graphique</li>
-        <li class='button'>Troisième graphique</li>
         <li class='button'><a href='/'>Voir le thermomètre</a></li>
     </ul>
 </div>
 
-<canvas width='630' height='705'></canvas>
+<canvas width='630' height='705' id='curve'></canvas>
 
-<table id='future'>
+<div id='future'>
+<h2>Personalisation</h2>
+<table>
     <thead>
             <tr>
-                <td colspan='2'><h2>Personalisation</h2></td>
-            </tr>
-            <tr>
-                <td>Activé <input type="radio" name="perso" id='custom' /></td>
-                <td>Désactivé <input type="radio" name="perso" id="normal" checked/></td>
+                <td><label for="perso">Activé</label><input type="radio" name="perso" id='custom'/></td>
+                <td><label for="perso">Désactivé</label><input type="radio" name="perso" checked='true' id="normal"/></td>
             </tr>
     </thead>
-    <tbody style='display: none;'>
+    <tbody>
+        <tr>
             <td>Nombre de l'axe X :</td>
             <td><input type="number" id="numberX" min='0' max='10' oninput='number(this);'/></td>
         </tr>
@@ -48,10 +45,28 @@
             <td>Y<input type="checkbox" id='gridY' onclick='setGrid(this);'/></td>
         </tr>
     </tbody>
+    <tfoot>
+        <tr>
+            <td rowspan='2'><label for='font'>Police :</label></td>
+            <td><input type="button" value="+" name='font'/></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="-" name='font'/></td>
+        </tr>
+    </tfoot>
 </table>
+</div>
+
+<div id='choiceDate'>
+    <h2>Date</h2>
+    <input type='button' value='Date Suivante' name='date'/>
+    <input type='button' value='Date Précedente' name='date'/><br>
+    <input type='date' /> <input type='button' name='sentDate' value='Envoyé'/>
+</div>
 
 <script src="Jquery/jquery-1.12.0.min.js"></script>
 <script src="Jquery/jcanvas.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
 <script src="JSGraph.js"></script>
 
 </body>
