@@ -16,7 +16,7 @@ function present(array) {
         jsonfile.readFileSync(file[0]).tHumi,
         jsonfile.readFileSync(file[0]).tVMC];
         
-    if (!array) {
+    if (array==null) {
         return present
     }
     else {
@@ -62,5 +62,4 @@ server.listen(process.env.PORT || 8080, process.env.IP || '0.0.0.0', function ()
     var addr = server.address();
     console.log("Server listening at", addr.address + ":" + addr.port);
 });
-
 
