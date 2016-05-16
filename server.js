@@ -9,7 +9,7 @@ var io = socketio.listen(server);
 var jsonfile = require('jsonfile');
 var delayed = require("delayed");
 
-var file=['sample.json','sampleFutur.json','curve.json'];
+var file=['sample.json','sampleFutur.json','sampleCurve.json'];
 
 function present(array) {
     var present=[jsonfile.readFileSync(file[0]).tWell,
