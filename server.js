@@ -7,7 +7,6 @@ var app = express();
 var server = http.createServer(app);
 var io = socketio.listen(server);
 var jsonfile = require('jsonfile');
-var delayed = require("delayed");
 
 var file=['sample.json','sampleFutur.json','sampleCurve.json'];
 
@@ -26,9 +25,6 @@ function present(array) {
 
 function dataCurve(time) {
     var data=jsonfile.readFileSync(file[2]).data,dataFutur=[];
-    console.log("Longueur boucle : "+data.length);
-    //console.log("dataRead : "+data[1].date+'/'+data[1].mouth+'/'+data[1].year);
-    
     for(var i=data.length-1;i>-1;i--) {
         if (time.year==data[i].year && time.mouth==data[i].mouth && time.date==data[i].date) {
             dataFutur.push(data[i]);
@@ -39,6 +35,7 @@ function dataCurve(time) {
 
     io.sockets.on('connection', function (socket) {
         socket.emit('data',present());
+        console.log("Un client s'est connecté !");
         
     socket.on('input', function (input) {
         console.log("input : "+input);
@@ -50,8 +47,6 @@ function dataCurve(time) {
     });
     
     socket.on('time', function(time) {
-       console.log(time.date+'/'+time.mouth+'/'+time.year);
-       console.log(dataCurve(time));
        socket.emit('dataCurve',dataCurve(time));
     });
 });
