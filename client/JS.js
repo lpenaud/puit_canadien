@@ -116,11 +116,11 @@ $('#sumbit1').click(function () {
 				else {
 					alert("Donnée non envoyé à cause d'une erreur ("+err+")");
 				}
-		});
-	}
-	else {
-        alert('Donnée non envoyé.');
-	}
+	        });
+	    }
+	    else {
+            alert('Donnée non envoyé.');
+	    }
 	}
 });
 
