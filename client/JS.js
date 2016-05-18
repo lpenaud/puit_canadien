@@ -86,21 +86,6 @@ function informationCanvas(element,valeur) {
     $(element).css('font-weight','bold');
 }
 
-socket.on('data', function(data) {
-    $("#temperatureWell").text('Température extérieur du puit : '+data[0]+" °C");
-    $('#humidity').text('Taux d\'humidité : '+data[1]+' %');
-    $('#temperatureVMC').text('Température de la VMC : '+data[2]+' °C');
-    
-    $('#temperatureVMC').click(function () {
-        informationCanvas(this,data[2]);
-    });
-    
-    $('#temperatureWell').click(function () {
-        informationCanvas(this,data[0]);
-    });
-    informationCanvas('#temperatureWell',data[0]);
-});
-
 $('#sumbit1').click(function () {
 	if (!$.isNumeric($('#input0').val()) || !$.isNumeric($('#input1').val())) {
 		alert("Vous n'avez pas rentré un nombre dans uns des champs");
@@ -122,6 +107,21 @@ $('#sumbit1').click(function () {
             alert('Donnée non envoyé.');
 	    }
 	}
+});
+
+socket.on('data', function(data) {
+    $("#temperatureWell").text('Température extérieur du puit : '+data[0]+" °C");
+    $('#humidity').text('Taux d\'humidité : '+data[1]+' %');
+    $('#temperatureVMC').text('Température de la VMC : '+data[2]+' °C');
+    
+    $('#temperatureVMC').click(function () {
+        informationCanvas(this,data[2]);
+    });
+    
+    $('#temperatureWell').click(function () {
+        informationCanvas(this,data[0]);
+    });
+    informationCanvas('#temperatureWell',data[0]);
 });
 
 beginThermometer();

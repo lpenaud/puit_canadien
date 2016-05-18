@@ -112,18 +112,25 @@ function curve(totalX,totalY,numberX,numberY,gridX,gridY,font,points){
         }
     }
     for(var i=points.length-1;i>-1;i--) {
-        //alert('('+points[i].tWell+';'+points[i].hours+')');
-    point('canvas',points[i].hours,points[i].tWell);
+        point('canvas',points[i].hours,points[i].tWell);
     }
 }
 
+socket.on('data', function(data) {
+    $("#temperatureWell").text('Température extérieur du puit : '+data[0]+" °C");
+    $('#humidity').text('Taux d\'humidité : '+data[1]+' %');
+    $('#temperatureVMC').text('Température de la VMC : '+data[2]+' °C');
+});
+
 $('#normal').click(function () {
     $('#future tbody,tfoot').css('display','none');
+    $('#choiceDate').css("margin-top","300px");
     curve(0,31,5,5,false,false,'0.7',dataCurveClient);
 });
 
 $('#custom').click(function() {
-    $('#future tbody,tfoot').css('display','flex');
+    $('#future tbody,tfoot').css('display','block');
+    $('#choiceDate').css("margin-top","490px");
     curve(0,31,setNumberX,setNumberY,setGridX,setGridY,setFont,dataCurveClient);
 });
 
@@ -298,7 +305,6 @@ $('#choiceDate input[name="date"]').click(function () {
     else if (this.value=="Envoyé") {
         date=$('#choiceDate input[type="date"]').val().split('-',3);
         timeJSON={"year":parseInt(date[0]),"mouth":parseInt(date[1])-1,"date":parseInt(date[2])};
-        alert(timeJSON.date);
     }
    
     socket.emit('time',timeJSON);

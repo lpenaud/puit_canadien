@@ -38,7 +38,7 @@ h1 {
 }
 
 @media screen and (min-width: 1024px) { /* Pour les PCs */
-    #information,#future {
+    #information,#future,#choiceDate {
          float: left;
          border-width: 5px; 
          border-style: solid;
@@ -74,7 +74,7 @@ h1 {
     
     #future {
         clear: both;
-        margin-top: 190px;
+        margin-top: 180px;
         border-color: blue;
     }
     
@@ -103,10 +103,7 @@ h1 {
     }
     
     #choiceDate {
-        clear: both;
-        float: right;
-        position: relative;
-        top: 40%;
+        margin-top: 300px;
     }
     
 }
@@ -148,18 +145,15 @@ h1 {
         display: block;
     }
     
-    #future label,input[type='number'] {
-        display: flex;
-        font-size: 2em;
-    }
-    
     #future #sumbit1 {
         width: 200px;
         clear: both;
-        position: relative;
-        bottom: 150px;
-        margin-right: 30%;
-        float: right;
+        margin-left: 45%;
+        margin-top: 2%;
+    }
+    
+    #future label,input[type='number']{
+        font-size: 2em;
     }
     
     #future thead,tbody {
@@ -167,17 +161,22 @@ h1 {
     }
     
     #future input[type='button'] {
-        display: block;
         font-size: 2.5em;
         font-weight: bold;
         width: 100px;
         height: 100px;
-        margin-right: 40%;
     }
     
-    #future label[for='font'] {
+    #future td[name='font'] {
         font-size: 2.5em;
-        margin-right: 20%;
+    }
+    
+    #future tfoot {
+        display: flex;
+    }
+    
+    #choiceDate input {
+        font-size: 2em;
     }
 }
 
