@@ -35,7 +35,6 @@ function dataCurve(time) {
 
     io.sockets.on('connection', function (socket) {
         socket.emit('data',present());
-        console.log("Un client s'est connecté !");
         
     socket.on('input', function (input) {
         console.log("input : "+input);
@@ -52,6 +51,8 @@ function dataCurve(time) {
 });
 
 app.use(express.static(path.resolve(__dirname, 'client')));
+
+
 
 server.listen(process.env.PORT || 8080, process.env.IP || '0.0.0.0', function () {
     var addr = server.address();
