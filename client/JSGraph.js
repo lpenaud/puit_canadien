@@ -32,6 +32,7 @@ function point(canvas,x,y) {
 function curve(totalX,totalY,numberX,numberY,gridX,gridY,font,points){ 
     var y=10,x=20;
     var originX=20,maxX=640,originY=630,maxY=700,canvas='canvas';
+    $('canvas').removeLayers();
     $('canvas').clearCanvas();
     $(canvas).drawLine({
         strokeStyle: "black",
@@ -156,21 +157,9 @@ function number(xy) {
     curve(0,31,setNumberX,setNumberY,setGridX,setGridY,setFont,dataCurveClient);
 }
 
-$("input[name='font']").click(function() {
-   if ($(this).val()=='+') {
-       setFont=setFont+0.1;
-   }
-   else if (this.value=='-') {
-       setFont=setFont-0.1;
-   }
-   curve(0,31,setNumberX,setNumberY,setGridX,setGridY,setFont,dataCurveClient);
-});
-
-socket.emit('time',timeJSON);
-socket.on('dataCurve',function (dataCurve) {
+function dataC(data) {
     var day,mouth;
-    dataCurveClient=dataCurve;
-    switch (dataCurve[0].day) {
+    switch (dataCurveClient[0].day) {
         case 0: 
             day='Dimanche';
             break;
@@ -193,7 +182,7 @@ socket.on('dataCurve',function (dataCurve) {
             day='Samedi';
             break;
     }
-    switch (dataCurve[0].mouth) {
+    switch (dataCurveClient[0].mouth) {
         case 0:
             mouth='janvier';
             break;
@@ -231,15 +220,89 @@ socket.on('dataCurve',function (dataCurve) {
             mouth='décembre';
             break;
     }
-    $('#choiceDate h2').text(day+' '+dataCurve[0].date+' '+mouth+' '+dataCurve[0].year);
-    curve(0,31,setNumberX,setNumberY,false,false,setFont,dataCurve);
+    curve(0,31,setNumberX,setNumberY,false,false,setFont,data);
+    $('#choiceDate h2').text(day+' '+dataCurveClient[0].date+' '+mouth+' '+dataCurveClient[0].year);
+}
+
+$("input[name='font']").click(function() {
+   if ($(this).val()=='+') {
+       setFont=setFont+0.1;
+   }
+   else if (this.value=='-') {
+       setFont=setFont-0.1;
+   }
+   curve(0,31,setNumberX,setNumberY,setGridX,setGridY,setFont,dataCurveClient);
 });
 
-/*$('#choiceDate input[name="date"]').click(function () {
-   if (this.value=='Date Suivante') {
-       socket.emit('nextDate',{"day":dataCurveClient[0].date})
+socket.emit('time',{"date":time.getDate(),"mouth":time.getMonth(),"year":time.getFullYear()});
+socket.on('dataCurve',function (dataCurve) {
+    if (dataCurve[0]) {
+        dataCurveClient=dataCurve;
+    }
+    else {
+        alert("Pas donnée pour cette date : \n"+timeJSON.date+'/'+timeJSON.mouth+'/'+timeJSON.year);
+        timeJSON.date=dataCurveClient[0].date;
+        timeJSON.mouth=dataCurveClient[0].mouth;
+        timeJSON.year=dataCurveClient[0].year;
+    }
+    dataC(dataCurveClient);
+});
+
+$('#choiceDate input[name="date"]').click(function () {
+    var date
+    if (this.value=='Date Suivante') {
+       if (timeJSON.date+1==31 && timeJSON.mouth%2==0 || timeJSON.date+1==30 && timeJSON.mouth%2!=0 || timeJSON.date+1==27 && timeJSON.mouth==1 && timeJSON.year%4==0 || timeJSON.date+1==28 && timeJSON.mouth==1 && timeJSON.year%4!=0) {
+           if (timeJSON.mouth+1==13) {
+               timeJSON.year=timeJSON.year+1;
+               timeJSON.mouth=0;
+           }
+           else {
+               timeJSON.mouth=timeJSON.mouth+1;
+           }
+           timeJSON.date=1;
+       }
+       
+       else {
+           timeJSON.date=timeJSON.date+1;
+       }
    }
-});*/
+   
+    else if (this.value=='Date Précedente') {
+       if (timeJSON.date-1==0) {
+           if (timeJSON.mouth-1==-1) {
+               timeJSON.year-=1;
+               timeJSON.mouth=11;
+               timeJSON.date=31;
+           }
+           else if (timeJSON.mouth%2==0) {
+               timeJSON.date=30;
+           }
+           else if (timeJSON.mouth==2 && timeJSON.year%4==0) {
+               timeJSON.date=28;
+           }
+           else if (timeJSON.mouth==2 && timeJSON.year%4!=0) {
+               timeJSON.date=27;
+           }
+           else if (timeJSON.mouth%2!=0) {
+               timeJSON.date=31;
+           }
+           else {
+               timeJSON.date=timeJSON.date-1;
+           }
+       }
+       else {
+           timeJSON.date=timeJSON.date-1;
+       }
+   }
+   
+    else if (this.value=="Envoyé") {
+        date=$('#choiceDate input[type="date"]').val().split('-',3);
+        timeJSON={"year":parseInt(date[0]),"mouth":parseInt(date[1])-1,"date":parseInt(date[2])};
+        alert(timeJSON.date);
+    }
+   
+    socket.emit('time',timeJSON);
+});
 
 $('#numberX').val('5');
 $('#numberY').val('5');
