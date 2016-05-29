@@ -1,4 +1,4 @@
-# puit_canadien
+# puit canadien
 
 ## Introduction
 
@@ -19,7 +19,7 @@ J'ai choisis node.js pour faire le serveur.
 - [x] Ajout de personnlisation concercant la taille des nombres pour le graphique.
 - [ ] Ajout de choix de couleur pour la courbe.
 - [ ] Tester le serveur sur un Rapsberry-pi.
-- [ ] Ajout d'un script générant l'historique des données reçus du puit (donnée pour la courbe).
+- [ ] Ajout d'un script générant l'historique des données reçus du puits (donnée pour la courbe).
 - [ ] Ajout d'un système de compte.
 - [ ] Ajout de création d’un programme de réglage des horaires selon les intentions de l’utilisateur.
 
