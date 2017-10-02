@@ -1,5 +1,7 @@
 # puit canadien
 
+Images illustrant le projet disponible dans le dossier [_images](https://github.com/lpenaud/puit_canadien/tree/master/_images)
+
 ## Introduction
 
 Ceci est mon projet pour la STI2D en l'année 2015-2016. 

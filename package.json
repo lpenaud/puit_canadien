@@ -1,0 +1,24 @@
+{
+  "name": "puit_canadien",
+  "version": "1.0.0",
+  "description": "## Introduction",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lpenaud/puit_canadien.git"
+  },
+  "author": "Loïc Penaud",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lpenaud/puit_canadien/issues"
+  },
+  "homepage": "https://github.com/lpenaud/puit_canadien#readme",
+  "dependencies": {
+    "express": "^4.16.1",
+    "socket.io": "^2.0.3"
+  }
+}
