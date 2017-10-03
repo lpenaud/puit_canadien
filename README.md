@@ -1,13 +1,31 @@
 # puit canadien
 
-Images illustrant le projet disponible dans le dossier [_images](https://github.com/lpenaud/puit_canadien/tree/master/_images)
-
 ## Introduction
 
-Ceci est mon projet pour la STI2D en l'année 2015-2016. 
-Nous devons faire un puit canadien avec prise à distance de celui-ci.
-Je m'occupe de la partie serveur du projet.
-J'ai choisis node.js pour faire le serveur.
+Ceci était mon projet technologique de STI2D pendant l'année scolaire de 2015-2016. 
+L'objectif de ce projet était de créer un puit canadien où l'utilisateur aurait pu configurer à distance celui-ci.
+
+Je me suis occupé de la partie "web" du projet.
+En effet, j'ai développé le serveur web avec nodejs et quelques frameworks utiles qu'on peut voir dans [package.json](https://github.com/lpenaud/puit_canadien/blob/master/package.json#L20).
+Puis, j'ai réalisé l'interface web avec du CSS vanilla, de l'HTML5 et du [jQuery](http://jquery.com/ "Site officiel de jQuery") accompagné du plugin [jCanvas](https://projects.calebevans.me/jcanvas, "Site officiel de jCanvas").
+
+## Images
+
+Images illustrant le projet disponible dans le dossier [_images](https://github.com/lpenaud/puit_canadien/tree/master/_images).
+
+### Sur navigateur web PC :
+
+**Graphique**
+![Page graphique PC](https://raw.githubusercontent.com/lpenaud/puit_canadien/master/_images/Puit%20Canadien%20Graphique.png)
+
+**Thermomètre**
+![Page thermomètre PC](https://raw.githubusercontent.com/lpenaud/puit_canadien/master/_images/Screenshot-2017-10-2%20Puit%20Canadien%20(2).png)
+
+### Sur navigateur web Mobile :
+
+| Thermomètre | Graphique |
+| :---------: | :-------: |
+| ![Page graphique mobile](https://raw.githubusercontent.com/lpenaud/puit_canadien/master/_images/Screenshot-Graphique-mobile.png) | ![Page thermométre mobile](https://raw.githubusercontent.com/lpenaud/puit_canadien/master/_images/Screenshot-Thermo-mobile.png)
 
 ## À faire
 
