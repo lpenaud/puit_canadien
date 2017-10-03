@@ -1,7 +1,7 @@
 {
   "name": "puit_canadien",
   "version": "1.0.0",
-  "description": "## Introduction",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "node server.js",
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/lpenaud/puit_canadien#readme",
   "dependencies": {
     "express": "^4.16.1",
+    "jsonfile": "^4.0.0",
     "socket.io": "^2.0.3"
   }
 }
